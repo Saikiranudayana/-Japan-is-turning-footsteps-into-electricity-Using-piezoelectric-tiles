@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 85%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 170 15% 45%;
+    --accent-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 40%;
+    --hero-subtitle: 210 17% 95%;
+    --radius: 0.75rem;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: hsl(0 0% 30%);
+    color: white;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  /* ─── Liquid Glass Effect ─── */
+  .liquid-glass {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+  }
+
+  .liquid-glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.02) 40%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0.06) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .liquid-glass::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0) 50%
+    );
+    pointer-events: none;
+  }
+
+  /* ─── Serif italic helper ─── */
+  .serif-italic {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-style: italic;
+  }
+
+  /* ─── Calendar Heatmap (GitHub-style) ─── */
+  .react-calendar-heatmap text {
+    font-size: 10px;
+    fill: hsl(var(--muted-foreground));
+  }
+  .react-calendar-heatmap .color-empty {
+    fill: #161b22;
+  }
+  .react-calendar-heatmap .color-scale-1 {
+    fill: #0e4429;
+  }
+  .react-calendar-heatmap .color-scale-2 {
+    fill: #006d32;
+  }
+  .react-calendar-heatmap .color-scale-3 {
+    fill: #26a641;
+  }
+  .react-calendar-heatmap .color-scale-4 {
+    fill: #39d353;
+  }
+  .react-calendar-heatmap rect:hover {
+    stroke: #fff;
+    stroke-width: 1px;
+  }
+}
+
+@layer utilities {
+  .text-hero-subtitle {
+    color: hsl(var(--hero-subtitle));
+  }
+}
